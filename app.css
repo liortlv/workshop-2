@@ -42,6 +42,10 @@
     float: left;
 }
 
+.chosen {
+    background-color: aquamarine;
+}
+
 /*.left, .right {*/
 /*    width: 25%;*/
 /*}*/
