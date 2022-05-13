@@ -15,10 +15,14 @@ const endGameData = [{
 const stones = document.querySelectorAll('.stone');
 const avengers = document.querySelectorAll('.avenger');
 const glove = document.querySelector('.infinity_glove');
+const matchedData = {
+    avengers: []
+};
 
 stones.forEach(stone => {
     stone.addEventListener('click', ({ target }) => {
         userChoose(stone);
+        matchedData.stone = stone.id;
     });
 });
 
@@ -26,14 +30,36 @@ stones.forEach(stone => {
 avengers.forEach(avenger => {
     avenger.addEventListener('click', ({ target }) => {
         userChoose(avenger);
+        matchedData.avengers.push(avenger.id);
     });
 });
 
 glove.addEventListener('click', ({ target }) => {
     userChoose(glove);
+    let stoneMatch = endGameData.filter(data => data.name === matchedData.stone);
+    let matchesCount = 0;
+    matchedData.avengers.forEach(avenger => {
+        if (stoneMatch[0].avengers.includes(avenger)) {
+            matchesCount++;
+        } else {
+            matchesCount = -10; ///
+        }
+    });
+    // need tp fix this issue of matches above
+    // use sort?
+    //json striginfy
+    //lowdash
+    console.log(stoneMatch[0].avengers.length);
+    if (matchesCount === stoneMatch[0].avengers.length) {
+        alert('Hooray!');
+    } else {
+        alert('Wrong!');
+    }
+
 });
 
 function userChoose(userChoice) {
+    console.log();
     if (userChoice.classList.contains('chosen')) {
         userChoice.classList.remove('chosen');
     } else {
