@@ -23,6 +23,7 @@ stones.forEach(stone => {
     stone.addEventListener('click', ({ target }) => {
         userChoose(stone);
         matchedData.stone = stone.id;
+        console.log(matchedData);
     });
 });
 
@@ -55,11 +56,17 @@ glove.addEventListener('click', ({ target }) => {
     } else {
         alert('Wrong!');
     }
-
+    matchedData.avengers =[];
+    matchedData.stone = null;
+    avengers.forEach(avenger => {
+        avenger.classList.remove('chosen');
+    });
+    stones.forEach(stone => {
+        stone.classList.remove('chosen');
+    });
 });
 
 function userChoose(userChoice) {
-    console.log();
     if (userChoice.classList.contains('chosen')) {
         userChoice.classList.remove('chosen');
     } else {
