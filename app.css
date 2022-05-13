@@ -17,6 +17,9 @@
 
 .clickable:hover {
     cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(47, 90, 208, 0.6);
+    transition: transform 150ms;
+    transform: scale(1.1);
 }
 
 #avengers_first {
