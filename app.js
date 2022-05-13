@@ -23,7 +23,6 @@ stones.forEach(stone => {
     stone.addEventListener('click', ({ target }) => {
         userChoose(stone);
         matchedData.stone = stone.id;
-        console.log(matchedData);
     });
 });
 
@@ -38,25 +37,14 @@ avengers.forEach(avenger => {
 glove.addEventListener('click', ({ target }) => {
     userChoose(glove);
     let stoneMatch = endGameData.filter(data => data.name === matchedData.stone);
-    let matchesCount = 0;
-    matchedData.avengers.forEach(avenger => {
-        if (stoneMatch[0].avengers.includes(avenger)) {
-            matchesCount++;
-        } else {
-            matchesCount = -10; ///
-        }
-    });
-    // need tp fix this issue of matches above
-    // use sort?
-    //json striginfy
-    //lowdash
-    console.log(stoneMatch[0].avengers.length);
-    if (matchesCount === stoneMatch[0].avengers.length) {
+
+    if (_.isEqual(stoneMatch[0].avengers.sort(), matchedData.avengers.sort())) {
         alert('Hooray!');
     } else {
         alert('Wrong!');
     }
-    matchedData.avengers =[];
+
+    matchedData.avengers = [];
     matchedData.stone = null;
     avengers.forEach(avenger => {
         avenger.classList.remove('chosen');
